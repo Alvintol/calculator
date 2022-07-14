@@ -10,7 +10,7 @@
   "scripts": {
     "start": "react-scripts start",
     "prod": "NODE_ENV=production postcss input.css -o ./css/main.css",
-    "watch": "tailwindcss -i ./input.css -o ./css/main.css --watch",
+    "watch": "tailwindcss -i ./src/main.css -o ./src/css/main.css --watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
