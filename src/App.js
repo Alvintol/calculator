@@ -19,10 +19,10 @@ const App = () => {
         <div className='bg-yellow-100 flex flex-col justify-center text-center border border-slate-900 rounded-md col-start-4 font-bold' id='times'>
           x
         </div>
-        <div className='bg-amber-500 flex flex-col justify-center text-center border border-slate-900 rounded-md col-start-1' id='7'>
+        <div className='bg-amber-500 flex flex-col justify-center text-center border border-slate-900 rounded-md' id='7'>
           7
         </div>
-        <div className='bg-amber-500 flex flex-col justify-center text-center border border-slate-900 rounded-md col-start-2' id='8'>
+        <div className='bg-amber-500 flex flex-col justify-center text-center border border-slate-900 rounded-md' id='8'>
           8
         </div>
         <div className='bg-amber-500 flex flex-col justify-center text-center border border-slate-900 rounded-md' id='9'>
