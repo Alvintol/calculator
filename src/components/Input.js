@@ -1,6 +1,7 @@
 const Input = () => {
   return (
-    <div>
+    <div className='text-orange-400 text-sm' id='equation'>
+      1x5
     </div>
   )
 }

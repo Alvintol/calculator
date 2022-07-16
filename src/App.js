@@ -1,13 +1,12 @@
 import './css/main.css'
+import Input from './components/Input';
 
 const App = () => {
   return (
     <div className="app h-screen flex flex-col items-center justify-center">
       <div className='w-1/2 h-1/2 border border-slate-900 rounded-sm grid grid-rows-6 grid-col-5 gap-1 text-2xl p-1 bg-neutral-500' id='main'>
         <div className='flex flex-col justify-end text-end col-start-1 col-end-5 px-2 text-4xl' id='display'>
-          <div className='text-orange-400 text-sm' id='equation'>
-            1x2
-          </div>
+          <Input />
           0
         </div>
         <div className='bg-red-400 flex flex-col justify-center text-center border border-slate-900 rounded-md col-start-1 col-end-3 font-bold' id='clear'>
