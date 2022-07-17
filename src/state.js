@@ -1,4 +1,4 @@
-const state = {
+const appState = {
   display: '0',
   input: '',
   buttons: {
@@ -73,4 +73,4 @@ const state = {
   }
 }
 
-export default state;
+export default appState;
