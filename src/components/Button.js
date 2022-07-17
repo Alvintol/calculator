@@ -16,8 +16,15 @@ const Button = ({ id, label, type }) => {
   const btnClick = () => {
     console.log(id)
     switch (type) {
-      case 'number': updateDisplay(id)
+      case 'number':
+        updateDisplay(id)
         break;
+      case 'symbol':
+        break;
+      case 'clear':
+        break;
+      case 'equal':
+        break
       default:
         break;
     }
