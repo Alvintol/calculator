@@ -2,21 +2,27 @@ import appState from './state';
 import { createContext, useContext, useState } from 'react';
 
 const StateContext = createContext(appState)
-const DisplayUpdateContext = createContext()
+const CurrentNumberUpdateContext = createContext()
 export const useAppState = () => useContext(StateContext)
-export const useDisplayUpdate = () => useContext(DisplayUpdateContext)
+export const useCurrentNumberUpdate = () => useContext(CurrentNumberUpdateContext)
 
 export const StateProvider = ({ children }) => {
 
   const [state, setState] = useState(appState)
 
-  const updateDisplay = (id) => setState(prev => ({ ...prev, display: id }))
+  const updateCurrentNumber = (id) =>
+    setState(prev =>
+    ({
+      ...prev,
+      currentNumber: prev.currentNumber === '0' ?
+        id : prev.currentNumber + id
+    }))
 
   return (
     <StateContext.Provider value={state}>
-      <DisplayUpdateContext.Provider value={updateDisplay}>
+      <CurrentNumberUpdateContext.Provider value={updateCurrentNumber}>
         {children}
-      </DisplayUpdateContext.Provider>
+      </CurrentNumberUpdateContext.Provider>
     </StateContext.Provider>
   )
 }

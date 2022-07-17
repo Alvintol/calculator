@@ -1,5 +1,5 @@
 const appState = {
-  display: '0',
+  currentNumber: '0',
   input: '',
   buttons: [
     {
