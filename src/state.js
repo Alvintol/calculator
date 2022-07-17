@@ -9,12 +9,12 @@ const appState = {
     },
     {
       id: 'divide',
-      type: 'symbol',
+      type: 'operator',
       label: '/'
     },
     {
       id: 'times',
-      type: 'symbol',
+      type: 'operator',
       label: 'x'
     },
     {
@@ -34,7 +34,7 @@ const appState = {
     },
     {
       id: 'minus',
-      type: 'symbol',
+      type: 'operator',
       label: '-'
     },
     {
@@ -54,7 +54,7 @@ const appState = {
     },
     {
       id: 'plus',
-      type: 'symbol',
+      type: 'operator',
       label: '+'
     },
     {
