@@ -21,6 +21,7 @@ const Button = ({ id, label, type }) => {
         updateCurrentNumber(id)
         break;
       case 'operator':
+        
         break;
       case 'reset':
         clearDisplay();

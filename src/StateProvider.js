@@ -26,7 +26,11 @@ export const StateProvider = ({ children }) => {
     }))
   }
 
-  const clearDisplay = () => setState(prev => ({ ...prev, currentNumber: '0' }))
+  const clearDisplay = () => setState(prev => ({
+    ...prev,
+    currentNumber: '0',
+    input: ''
+  }))
 
   const addOperator = (id, type) => {
     const operators = /[/*-+]/
@@ -35,7 +39,7 @@ export const StateProvider = ({ children }) => {
     setState(prev =>
     ({
       ...prev,
-      input: [...prev.input, prev.currentNumber, id],
+      input: prev.input + prev.currentNumber + id,
       currentNumber: '0'
     }))
   }
