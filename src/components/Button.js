@@ -16,7 +16,7 @@ const Button = ({ id, label, type }) => {
 
   const btnClick = () => {
     console.log(id)
-    switch (type) {
+    switch (type || id) {
       case 'number':
         updateCurrentNumber(id)
         break;
