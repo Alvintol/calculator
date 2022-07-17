@@ -16,26 +16,6 @@ export const StateProvider = ({ children }) => {
 
   const [state, setState] = useState(appState)
 
-  const updateCurrentNumber = (id) => {
-    const operators = /[/*-+]/;
-
-    if (id === '.' && state.currentNumber.includes('.'))
-      return null;
-
-    setState(prev =>
-    ({
-      ...prev,
-      currentNumber: prev.currentNumber === '0' || prev.currentNumber.match(operators) ?
-        id : prev.currentNumber + id
-    }))
-  }
-
-  const clearDisplay = () => setState(prev => ({
-    ...prev,
-    currentNumber: '0',
-    input: ''
-  }))
-
   const getProduct = (current, newNum, operator) => {
     const nums = [+current, +newNum];
 
@@ -50,7 +30,28 @@ export const StateProvider = ({ children }) => {
     })
   }
 
-  const addOperator = async (type, label) => {
+  const updateCurrentNumber = (id) => {
+    const operators = /[/*-+]/;
+
+    if (id === '.' && state.currentNumber.includes('.'))
+      return null;
+
+    setState(prev =>
+    ({
+      ...prev,
+      currentNumber: prev.currentNumber === '0' || prev.currentNumber.match(operators) ?
+        id : prev.currentNumber + id,
+      product: getProduct(prev.product, state.currentNumber, state.lastOperator)
+    }))
+  }
+
+  const clearDisplay = () => setState(prev => ({
+    ...prev,
+    currentNumber: '0',
+    input: ''
+  }))
+
+  const addOperator = (type, label) => {
     const operators = /[//x/-/+]/;
     if (state.currentNumber.match(operators)) {
       setState(prev =>
@@ -64,14 +65,12 @@ export const StateProvider = ({ children }) => {
       return null
     }
     else {
-      await setState(prev =>
+      setState(prev =>
       ({
         ...prev,
         input: prev.input + prev.currentNumber + label,
-        currentNumber: label,
-        product: getProduct(prev.product, prev.currentNumber, label)
+        currentNumber: label
       }))
-      console.log('STATE:PRODUCT:', state.product)
     }
   }
 

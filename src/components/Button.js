@@ -1,11 +1,12 @@
 import classNames from 'classnames';
-import { useClearDisplay, useCurrentNumberUpdate, useOperator } from '../StateProvider';
+import { useClearDisplay, useCurrentNumberUpdate, useOperator, useProduct } from '../StateProvider';
 
 const Button = ({ id, label, type }) => {
 
   const updateCurrentNumber = useCurrentNumberUpdate();
   const clearDisplay = useClearDisplay();
   const addOperator = useOperator();
+  const displayProduct = useProduct()
 
   const btnClass = classNames('flex flex-col justify-center text-center border border-slate-900 rounded-md', {
     'bg-red-400 col-start-1 col-end-3 font-bold': type === 'reset',
@@ -28,6 +29,7 @@ const Button = ({ id, label, type }) => {
         clearDisplay();
         break;
       case 'equal':
+        displayProduct();
         break
       default:
         break;
