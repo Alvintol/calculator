@@ -3,7 +3,6 @@ import { useAppState, useDisplayUpdate } from '../StateProvider';
 
 const Button = ({ id, label, type }) => {
 
-  const state = useAppState();
   const updateDisplay = useDisplayUpdate();
 
   const btnClass = classNames('flex flex-col justify-center text-center border border-slate-900 rounded-md', {
@@ -14,16 +13,21 @@ const Button = ({ id, label, type }) => {
     'bg-teal-500 row-span-2 font-bold': type === 'equal'
   })
 
-  const click = () => {
+  const btnClick = () => {
     console.log(id)
-    
+    switch (type) {
+      case 'number': updateDisplay(id)
+        break;
+      default:
+        break;
+    }
   }
 
   return (
     <div
       className={btnClass}
       id={id}
-      onClick={click}
+      onClick={btnClick}
     >
       {label}
     </div>
