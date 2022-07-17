@@ -32,16 +32,18 @@ export const StateProvider = ({ children }) => {
     input: ''
   }))
 
-  const addOperator = (id, type) => {
-    const operators = /[/*-+]/
-    if (type === 'operator' && state.input.slice(-1)[0].match(operators))
+  const addOperator = (type, label) => {
+    const operators = /[/*-+]/;
+    if (type === 'operator' &&
+      state.currentNumber === '0') {
       return null
-    setState(prev =>
-    ({
-      ...prev,
-      input: prev.input + prev.currentNumber + id,
-      currentNumber: '0'
-    }))
+    } else {
+      setState(prev =>
+      ({
+        ...prev,
+        input: prev.input + prev.currentNumber + label
+      }))
+    }
   }
 
   return (
