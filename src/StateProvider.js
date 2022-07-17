@@ -1,5 +1,5 @@
 import appState from './state';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useRef, useState } from 'react';
 
 const StateContext = createContext(appState)
 const CurrentNumberUpdateContext = createContext()
@@ -15,13 +15,15 @@ export const StateProvider = ({ children }) => {
   const [state, setState] = useState(appState)
 
   const updateCurrentNumber = (id) => {
+    const operators = /[/*-+]/;
+
     if (id === '.' && state.currentNumber.includes('.'))
-      return null
+      return null;
 
     setState(prev =>
     ({
       ...prev,
-      currentNumber: prev.currentNumber === '0' ?
+      currentNumber: prev.currentNumber === '0' || prev.currentNumber.match(operators) ?
         id : prev.currentNumber + id
     }))
   }
@@ -35,13 +37,17 @@ export const StateProvider = ({ children }) => {
   const addOperator = (type, label) => {
     const operators = /[/*-+]/;
     if (type === 'operator' &&
-      state.currentNumber === '0') {
+      (state.currentNumber === '0' ||
+        state.currentNumber.match(operators)
+      )
+    ) {
       return null
     } else {
       setState(prev =>
       ({
         ...prev,
-        input: prev.input + prev.currentNumber + label
+        input: prev.input + prev.currentNumber + label,
+        currentNumber: label
       }))
     }
   }
