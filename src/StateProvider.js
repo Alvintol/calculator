@@ -12,13 +12,19 @@ export const StateProvider = ({ children }) => {
 
   const [state, setState] = useState(appState)
 
-  const updateCurrentNumber = (id) =>
+  const updateCurrentNumber = (id) => {
+
+    if (id === '.' && state.currentNumber.includes('.'))
+      return null
+
     setState(prev =>
     ({
       ...prev,
       currentNumber: prev.currentNumber === '0' ?
         id : prev.currentNumber + id
     }))
+  }
+
 
   const clearDisplay = () => setState(prev => ({ ...prev, currentNumber: '0' }))
 
