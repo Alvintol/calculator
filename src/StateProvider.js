@@ -1,14 +1,16 @@
 import appState from './state';
-import { createContext, useContext, useRef, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
-const StateContext = createContext(appState)
-const CurrentNumberUpdateContext = createContext()
-const ClearDisplayContext = createContext()
-const OperatorContext = createContext()
-export const useAppState = () => useContext(StateContext)
-export const useCurrentNumberUpdate = () => useContext(CurrentNumberUpdateContext)
-export const useClearDisplay = () => useContext(ClearDisplayContext)
-export const useOperator = () => useContext(OperatorContext)
+const StateContext = createContext(appState);
+const CurrentNumberUpdateContext = createContext();
+const ClearDisplayContext = createContext();
+const OperatorContext = createContext();
+const ProductContext = createContext();
+export const useAppState = () => useContext(StateContext);
+export const useCurrentNumberUpdate = () => useContext(CurrentNumberUpdateContext);
+export const useClearDisplay = () => useContext(ClearDisplayContext);
+export const useOperator = () => useContext(OperatorContext);
+export const useProduct = () => useContext(ProductContext);
 
 export const StateProvider = ({ children }) => {
 
@@ -57,12 +59,21 @@ export const StateProvider = ({ children }) => {
     }
   }
 
+  const displayProduct = () => setState(prev => ({
+    ...prev,
+    currentNumber: prev.product,
+    input: '',
+    product: ''
+  }))
+
   return (
     <StateContext.Provider value={state}>
       <CurrentNumberUpdateContext.Provider value={updateCurrentNumber}>
         <ClearDisplayContext.Provider value={clearDisplay}>
           <OperatorContext.Provider value={addOperator}>
-            {children}
+            <ProductContext.Provider value={displayProduct}>
+              {children}
+            </ProductContext.Provider>
           </OperatorContext.Provider>
         </ClearDisplayContext.Provider>
       </CurrentNumberUpdateContext.Provider>
