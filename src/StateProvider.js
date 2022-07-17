@@ -36,7 +36,21 @@ export const StateProvider = ({ children }) => {
     input: ''
   }))
 
-  const addOperator = (type, label) => {
+  const getProduct = (current, newNum, operator) => {
+    const nums = [+current, +newNum];
+
+    return nums.reduce((a, b) => {
+      switch (operator) {
+        case '/': return a / b;
+        case '*': return a * b;
+        case '-': return a - b;
+        case '+': return a + b;
+        default: return null
+      }
+    })
+  }
+
+  const addOperator = async (type, label) => {
     const operators = /[//x/-/+]/;
     if (state.currentNumber.match(operators)) {
       setState(prev =>
@@ -50,12 +64,14 @@ export const StateProvider = ({ children }) => {
       return null
     }
     else {
-      setState(prev =>
+      await setState(prev =>
       ({
         ...prev,
         input: prev.input + prev.currentNumber + label,
-        currentNumber: label
+        currentNumber: label,
+        product: getProduct(prev.product, prev.currentNumber, label)
       }))
+      console.log('STATE:PRODUCT:', state.product)
     }
   }
 
