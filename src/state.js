@@ -1,6 +1,7 @@
 const appState = {
   currentNumber: '0',
   input: '',
+  product: '',
   buttons: [
     {
       id: 'clear',
