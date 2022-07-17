@@ -35,14 +35,19 @@ export const StateProvider = ({ children }) => {
   }))
 
   const addOperator = (type, label) => {
-    const operators = /[/*-+]/;
-    if (type === 'operator' &&
-      (state.currentNumber === '0' ||
-        state.currentNumber.match(operators)
-      )
+    const operators = /[//x/-/+]/;
+    if (state.currentNumber.match(operators)) {
+      setState(prev =>
+      ({
+        ...prev,
+        input: prev.input.slice(0, -1) + label
+      }))
+    } else if (type === 'operator' &&
+      state.currentNumber === '0'
     ) {
       return null
-    } else {
+    }
+    else {
       setState(prev =>
       ({
         ...prev,
