@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-import { useCurrentNumberUpdate } from '../StateProvider';
+import { useClearDisplay, useCurrentNumberUpdate } from '../StateProvider';
 
 const Button = ({ id, label, type }) => {
 
   const updateCurrentNumber = useCurrentNumberUpdate();
+  const clearDisplay = useClearDisplay();
 
   const btnClass = classNames('flex flex-col justify-center text-center border border-slate-900 rounded-md', {
     'bg-red-400 col-start-1 col-end-3 font-bold': type === 'reset',
@@ -21,7 +22,8 @@ const Button = ({ id, label, type }) => {
         break;
       case 'symbol':
         break;
-      case 'clear':
+      case 'reset':
+        clearDisplay();
         break;
       case 'equal':
         break

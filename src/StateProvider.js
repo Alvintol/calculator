@@ -6,7 +6,7 @@ const CurrentNumberUpdateContext = createContext()
 const ClearDisplayContext = createContext()
 export const useAppState = () => useContext(StateContext)
 export const useCurrentNumberUpdate = () => useContext(CurrentNumberUpdateContext)
-export const useClearDisplayUpdate = () => useContext(ClearDisplayContext)
+export const useClearDisplay = () => useContext(ClearDisplayContext)
 
 export const StateProvider = ({ children }) => {
 
@@ -20,7 +20,7 @@ export const StateProvider = ({ children }) => {
         id : prev.currentNumber + id
     }))
 
-  const clearDisplay = () => setState(prev => ({ ...prev, currentNumber: 0 }))
+  const clearDisplay = () => setState(prev => ({ ...prev, currentNumber: '0' }))
 
   return (
     <StateContext.Provider value={state}>
