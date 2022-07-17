@@ -1,13 +1,27 @@
 import './css/main.css'
 import Display from './components/Display';
-import { StateProvider } from './StateProvider'
+import Button from './components/Button';
+import { StateProvider, useAppState } from './StateProvider'
 
 const App = () => {
+
+  const state = useAppState();
+  const buttons = state.buttons.map(btn => {
+
+    return (
+      <Button
+      
+      />
+    )
+  })
+
+
   return (
     <StateProvider>
       <div className="app h-screen flex flex-col items-center justify-center">
         <div className='w-1/2 h-1/2 border border-slate-900 rounded-sm grid grid-rows-6 grid-col-5 gap-1 text-2xl p-1 bg-neutral-500' id='main'>
           <Display />
+          {buttons}
           <div className='bg-red-400 flex flex-col justify-center text-center border border-slate-900 rounded-md col-start-1 col-end-3 font-bold' id='clear'>
             AC
           </div>

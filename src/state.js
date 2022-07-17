@@ -1,76 +1,93 @@
 const appState = {
   display: '0',
   input: '',
-  buttons: {
-    clear: {
+  buttons: [
+    {
+      id: 'clear',
       type: 'reset',
       label: 'AC'
     },
-    divide: {
+    {
+      id: 'divide',
       type: 'symbol',
       label: '/'
     },
-    times: {
+    {
+      id: 'times',
       type: 'symbol',
       label: 'x'
     },
-    7: {
+    {
+      id: '7',
       type: 'number',
       label: 7
     },
-    8: {
+    {
+      id: '8',
       type: 'number',
       label: 8
     },
-    9: {
+    {
+      id: '9',
       type: 'number',
       label: 9
     },
-    minus: {
+    {
+      id: 'minus',
       type: 'symbol',
       label: '-'
     },
-    4: {
+    {
+      id: '4',
       type: 'number',
       label: 4
     },
-    5: {
+    {
+      id: '5',
       type: 'number',
       label: 5
     },
-    6: {
+    {
+      id: '6',
       type: 'number',
       label: 6
     },
-    plus: {
+    {
+      id: 'plus',
       type: 'symbol',
       label: '+'
     },
-    1: {
+    {
+      id: '1',
       type: 'number',
       label: 1
     },
-    2: {
+    {
+      id: '2',
       type: 'number',
       label: 2
     },
-    3: {
+    {
+      id: '3',
       type: 'number',
       label: 3
     },
-    equal: {
+    {
+      id: 'equal',
       type: 'equal',
       label: '='
     },
-    0: {
+    {
+      id: '0',
       type: 'number',
       label: 0
     },
-    dot: {
+    {
+      id: 'dot',
       type: 'symbol',
       label: '.'
     }
-  }
+  ]
 }
 
 export default appState;
