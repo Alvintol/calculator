@@ -22,7 +22,7 @@ export const StateProvider = ({ children }) => {
     return productArr.reduce((a, b) => {
       switch (operator) {
         case '/': return a / b;
-        case '*': return a * b;
+        case 'x': return a * b;
         case '-': return a - b;
         case '+': return a + b;
         default: return null
@@ -31,7 +31,6 @@ export const StateProvider = ({ children }) => {
   }
 
   const updateCurrentNumber = (id) => {
-    const operators = /[//x/-/+]/;
 
     if (id === '.' && state.currentNumber.includes('.'))
       return null;
@@ -40,10 +39,9 @@ export const StateProvider = ({ children }) => {
     ({
       ...prev,
       currentNumber: prev.currentNumber === '0' ||
-        prev.currentNumber.match(operators) ||
-        prev.product === 0 ?
-        id : prev.currentNumber + id,
-      product: !prev.currentNumber.match(operators) ? getProduct([+prev.product, +id], prev.lastOperator) : prev.product
+        !state.currentNumber.match(/\d+/)
+        ?
+        id : `${prev.currentNumber}${id}`,
     }))
   }
 
@@ -62,6 +60,8 @@ export const StateProvider = ({ children }) => {
       ({
         ...prev,
         input: prev.input.slice(0, -1) + label,
+        product: !prev.currentNumber.match(operators) ?
+          getProduct([+prev.product, +state.currentNumber], prev.lastOperator) : prev.product,
         lastOperator: label
       }))
     } else if (type === 'operator' &&
@@ -75,6 +75,8 @@ export const StateProvider = ({ children }) => {
         ...prev,
         input: prev.input + prev.currentNumber + label,
         currentNumber: label,
+        product: !prev.currentNumber.match(operators) ?
+          getProduct([+prev.product, +state.currentNumber], prev.lastOperator) : prev.product,
         lastOperator: label
       }))
     }
