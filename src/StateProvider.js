@@ -61,6 +61,7 @@ export const StateProvider = ({ children }) => {
       setState(prev =>
       ({
         ...prev,
+        currentNumber: label,
         input: prev.input.slice(0, -1) + label,
         product: !prev.currentNumber.match(operators) ?
           getProduct([+prev.product, +state.currentNumber], state.lastOperator) : prev.product,
