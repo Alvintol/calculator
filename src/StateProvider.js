@@ -17,8 +17,8 @@ export const StateProvider = ({ children }) => {
   const [state, setState] = useState(appState)
 
   const getProduct = (productArr, operator) => {
-    console.log('PREV:', productArr[0])
-    console.log('CURRENT:', productArr[1])
+
+    console.log('OPERATOR:', operator)
     return productArr.reduce((a, b) => {
       switch (operator) {
         case '/': return a / b;
@@ -39,7 +39,7 @@ export const StateProvider = ({ children }) => {
     ({
       ...prev,
       currentNumber: prev.currentNumber === '0' ||
-        !state.currentNumber.match(/\d+/)
+        !state.currentNumber.match(/^[1-9][.\d]*(,\d+)?$/)
         ?
         id : `${prev.currentNumber}${id}`,
     }))
@@ -54,7 +54,7 @@ export const StateProvider = ({ children }) => {
   }))
 
   const addOperator = (type, label) => {
-    const operators = /[//x/-/+]/;
+    const operators = /[x|/-/+|/]/;
     if (state.currentNumber.match(operators)) {
       setState(prev =>
       ({
