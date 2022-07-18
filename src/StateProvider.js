@@ -18,7 +18,6 @@ export const StateProvider = ({ children }) => {
 
   const getProduct = (productArr, operator) => {
 
-    console.log('OPERATOR:', operator)
     return productArr.reduce((a, b) => {
       switch (operator) {
         case '/': return a / b;
@@ -34,16 +33,16 @@ export const StateProvider = ({ children }) => {
 
     if (id === '.' && state.currentNumber.includes('.'))
       return null;
-
     setState(prev =>
     ({
       ...prev,
       currentNumber: prev.currentNumber === '0' ||
-        !state.currentNumber.match(/^[1-9][.\d]*(,\d+)?$/)
+        !prev.currentNumber.match(/^[0-9][.\d]*(,\d+)?$/)
         ?
         id : `${prev.currentNumber}${id}`,
+        product: prev.currentNumber.match(/^[0-9][.\d]*(,\d+)?$/) ? 
+        getProduct([+prev.product, +id], prev.lastOperator) : +prev.product
     }))
-    console.log('numupdate:', state)
   }
 
   const clearDisplay = () => setState(prev => ({
@@ -64,7 +63,7 @@ export const StateProvider = ({ children }) => {
         currentNumber: label,
         input: prev.input.slice(0, -1) + label,
         product: !prev.currentNumber.match(operators) ?
-          getProduct([+prev.product, +state.currentNumber], state.lastOperator) : prev.product,
+          getProduct([prev.product, +prev.currentNumber], prev.lastOperator) : prev.product,
         lastOperator: label
       }))
     } else if (type === 'operator' &&
@@ -78,24 +77,21 @@ export const StateProvider = ({ children }) => {
         ...prev,
         input: prev.input + prev.currentNumber + label,
         currentNumber: label,
-        product: !prev.currentNumber.match(operators) ?
-          getProduct([+prev.product, +state.currentNumber], state.lastOperator) : prev.product,
+        product: prev.input.length > 0 ?
+          getProduct([prev.product, +prev.currentNumber], prev.lastOperator) : prev.product,
         lastOperator: label
       }))
-      console.log('STATE', state)
     }
   }
 
   const displayProduct = () => {
-    const product = getProduct([state.product, +state.currentNumber], state.lastOperator)
     setState(prev => ({
       ...prev,
-      currentNumber: product.toString(),
+      currentNumber: getProduct([+prev.product, +prev.currentNumber], prev.lastOperator).toString(),
       input: '',
-      lastOperator: prev.lastOperator,
-      product: 0
+      product: getProduct([+prev.product, +prev.currentNumber], prev.lastOperator),
+      lastOperator: prev.lastOperator
     }))
-    console.log('DISPALYPRODUCT STATE:', state)
   }
 
   return (
