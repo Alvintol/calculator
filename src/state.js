@@ -2,7 +2,7 @@ const appState = {
   currentNumber: '0',
   input: '',
   lastOperator: '+',
-  product: '',
+  product: 0,
   buttons: [
     {
       id: 'clear',

@@ -2,11 +2,15 @@ import { useAppState } from '../StateProvider'
 
 const Input = () => {
   const state = useAppState()
-  const operators = /[/*-+]/
+
+  console.log('STATE:CURRENTNUM:', state.currentNumber)
+  console.log('STATE:CURRENTNUM:', typeof state.currentNumber)
+  console.log('STATEPRODUCT:', state.product)
+  console.log('STATEPRODUCTMATCH:', state.currentNumber.match(/\d+/))
 
   return (
     <div className='text-orange-400 text-sm' id='equation'>
-      {state.input}{!state.currentNumber.match(operators) ? state.currentNumber : null}
+      {state.input}{state.currentNumber.match(/\d+/) ? state.currentNumber : ''}
     </div>
   )
 }
