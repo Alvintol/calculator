@@ -33,6 +33,8 @@ export const StateProvider = ({ children }) => {
 
     if (id === '.' && state.currentNumber.includes('.'))
       return null;
+    console.log('STATE:',state)
+    console.log('ID:',id)
     setState(prev =>
     ({
       ...prev,
@@ -43,6 +45,7 @@ export const StateProvider = ({ children }) => {
         product: prev.currentNumber.match(/^[0-9][.\d]*(,\d+)?$/) ? 
         getProduct([+prev.product, +id], prev.lastOperator) : +prev.product
     }))
+    console.log('STATE:', state)
   }
 
   const clearDisplay = () => setState(prev => ({
@@ -55,8 +58,9 @@ export const StateProvider = ({ children }) => {
 
   const addOperator = (type, label) => {
     const operators = /[x\-/+]/;
-
+    console.log('STATE:CURRENTNUMBER:', state.currentNumber)
     if (state.currentNumber.match(operators)) {
+      console.log('*********************************TEST1*********************************')
       setState(prev =>
       ({
         ...prev,
@@ -72,15 +76,20 @@ export const StateProvider = ({ children }) => {
       return null
     }
     else {
+      console.log('*********************************TEST2*********************************')
       setState(prev =>
       ({
         ...prev,
         input: prev.input + prev.currentNumber + label,
         currentNumber: label,
-        product: prev.input.length > 0 ?
+        product: prev.input.length > 0 
+        // ||
+        //   !prev.currentNumber.match(operators) 
+          ?
           getProduct([prev.product, +prev.currentNumber], prev.lastOperator) : prev.product,
         lastOperator: label
       }))
+      console.log('STATE', state)
     }
   }
 
@@ -92,6 +101,7 @@ export const StateProvider = ({ children }) => {
       product: getProduct([+prev.product, +prev.currentNumber], prev.lastOperator),
       lastOperator: prev.lastOperator
     }))
+    console.log('DISPALYPRODUCT STATE:', state)
   }
 
   return (
