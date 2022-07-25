@@ -92,14 +92,21 @@ export const StateProvider = ({ children }) => {
   }
 
   const displayProduct = () => {
-    setState(prev => ({
-      ...prev,
-      currentNumber: prev.product.toString(),
-      input: '',
-      product: prev.product,
-      lastOperator: prev.lastOperator,
-      numbers: [prev.product]
-    }))
+    state.numbers.length === 1 ?
+      setState(prev => ({
+        ...prev,
+        currentNumber: getProduct([prev.product, prev.product], prev.lastOperator).toString(),
+        product: getProduct([prev.product, prev.product], prev.lastOperator),
+        numbers: [getProduct([prev.product, prev.product], prev.lastOperator)]
+      })) :
+      setState(prev => ({
+        ...prev,
+        currentNumber: prev.product.toString(),
+        input: '',
+        product: prev.product,
+        lastOperator: prev.lastOperator,
+        numbers: [prev.product]
+      }))
   }
 
   return (
