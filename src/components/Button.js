@@ -1,7 +1,8 @@
 import classNames from 'classnames';
+import { useKey } from '../eventListener';
 import { useClearDisplay, useCurrentNumberUpdate, useOperator, useProduct } from '../StateProvider';
 
-const Button = ({ id, label, type }) => {
+const Button = ({ id, label, type, keyTrigger }) => {
 
   const updateCurrentNumber = useCurrentNumberUpdate();
   const clearDisplay = useClearDisplay();
@@ -17,7 +18,7 @@ const Button = ({ id, label, type }) => {
   })
 
   const btnClick = () => {
-    console.log(id)
+
     switch (type) {
       case 'number':
         updateCurrentNumber(id)
@@ -35,6 +36,12 @@ const Button = ({ id, label, type }) => {
         break;
     }
   }
+
+  useKey(`${keyTrigger}`, (e) => {
+    if (e?.code === keyTrigger) {
+      btnClick()
+    }
+  })
 
   return (
     <div

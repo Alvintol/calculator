@@ -13,7 +13,7 @@ const App = () => {
   }
 
   const buttons = state.buttons.map(btn => {
-    const { id, type, label } = btn;
+    const { id, type, label, keyTrigger } = btn;
 
     return (
       <Button
@@ -21,6 +21,7 @@ const App = () => {
         id={id}
         type={type}
         label={label}
+        keyTrigger={keyTrigger}
       />
     )
   })

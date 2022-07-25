@@ -18,8 +18,6 @@ export const StateProvider = ({ children }) => {
   const operators = /[x\-/+]/;
 
   const getProduct = (productArr, operator) => {
-    console.log('PRODUCTARR:', productArr)
-    console.log('OPERATOR:', operator)
     return productArr.reduce((a, b) => {
       switch (operator) {
         case '/': return a / b;
@@ -85,8 +83,6 @@ export const StateProvider = ({ children }) => {
         input: prev.input + prev.currentNumber + label,
         currentNumber: label,
         product: state.numbers.length > 1
-          // ||
-          //   !prev.currentNumber.match(operators) 
           ?
           getProduct([prev.numbers.slice(-1)[0], +prev.currentNumber], prev.lastOperator) : prev.product,
         lastOperator: label,
