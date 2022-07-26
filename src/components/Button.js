@@ -12,16 +12,16 @@ const Button = ({ id, label, type, keyTrigger }) => {
   const btnClass = classNames('flex flex-col justify-center text-center border border-slate-900 rounded-md', {
     'bg-red-400 col-start-1 col-end-3 font-bold': type === 'reset',
     'bg-yellow-100 font-bold': type === 'operator',
-    'bg-amber-500 row-start-6 col-start-1 col-end-3': type === 'number' && id === '0',
+    'bg-amber-500 row-start-6 col-start-1 col-end-3': type === 'number' && id === 'zero',
     'bg-amber-500': type === 'number',
-    'bg-teal-500 row-span-2 font-bold': type === 'equal'
+    'bg-teal-500 row-span-2 font-bold': type === 'equals'
   })
 
   const btnClick = () => {
 
     switch (type) {
       case 'number':
-        updateCurrentNumber(id)
+        updateCurrentNumber(label)
         break;
       case 'operator':
         addOperator(type, label)
@@ -29,7 +29,7 @@ const Button = ({ id, label, type, keyTrigger }) => {
       case 'reset':
         clearDisplay();
         break;
-      case 'equal':
+      case 'equals':
         displayProduct();
         break
       default:

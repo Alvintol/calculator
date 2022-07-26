@@ -18,91 +18,91 @@ const appState = {
       keyTrigger: 'NumpadDivide'
     },
     {
-      id: 'times',
+      id: 'multiply',
       type: 'operator',
       label: 'x',
       keyTrigger: 'NumpadMultiply'
     },
     {
-      id: '7',
+      id: 'seven',
       type: 'number',
-      label: 7,
+      label: '7',
       keyTrigger: 'Numpad7'
     },
     {
-      id: '8',
+      id: 'eight',
       type: 'number',
-      label: 8,
+      label: '8',
       keyTrigger: 'Numpad8'
     },
     {
-      id: '9',
+      id: 'nine',
       type: 'number',
-      label: 9,
+      label: '9',
       keyTrigger: 'Numpad9'
     },
     {
-      id: 'minus',
+      id: 'subtract',
       type: 'operator',
       label: '-',
       keyTrigger: 'NumpadSubtract'
     },
     {
-      id: '4',
+      id: 'four',
       type: 'number',
-      label: 4,
+      label: '4',
       keyTrigger: 'Numpad4'
     },
     {
-      id: '5',
+      id: 'five',
       type: 'number',
-      label: 5,
+      label: '5',
       keyTrigger: 'Numpad5'
     },
     {
-      id: '6',
+      id: 'six',
       type: 'number',
-      label: 6,
+      label: '6',
       keyTrigger: 'Numpad6'
     },
     {
-      id: 'plus',
+      id: 'add',
       type: 'operator',
       label: '+',
       keyTrigger: 'NumpadAdd'
     },
     {
-      id: '1',
+      id: 'one',
       type: 'number',
-      label: 1,
+      label: '1',
       keyTrigger: 'Numpad1'
     },
     {
-      id: '2',
+      id: 'two',
       type: 'number',
-      label: 2,
+      label: '2',
       keyTrigger: 'Numpad2'
     },
     {
-      id: '3',
+      id: 'three',
       type: 'number',
-      label: 3,
+      label: '3',
       keyTrigger: 'Numpad3'
     },
     {
-      id: 'equal',
-      type: 'equal',
+      id: 'equals',
+      type: 'equals',
       label: '=',
       keyTrigger: 'NumpadEnter'
     },
     {
-      id: '0',
+      id: 'zero',
       type: 'number',
-      label: 0,
+      label: '0',
       keyTrigger: 'Numpad0'
     },
     {
-      id: '.',
+      id: 'decimal',
       type: 'number',
       label: '.',
       keyTrigger: 'NumpadDecimal'

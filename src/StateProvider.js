@@ -31,12 +31,12 @@ export const StateProvider = ({ children }) => {
 
   const updateCurrentNumber = (id) => {
 
-    if ((id === '.' && state.currentNumber.includes('.')) ||
-      (id === '0' && state.numbers.slice(-1)[0] === 0 &&
+    if ((id === 'decimal' && state.currentNumber.includes('.')) ||
+      (id === 'zero' && state.numbers.slice(-1)[0] === 0 &&
         !state.currentNumber.match(/^[0-9][.\d]*(,\d+)?$/))) {
       return
     }
-    if (id === '.' && state.currentNumber === '0') {
+    if (id === 'decimal' && state.currentNumber === '0') {
       return setState(prev => ({ ...prev, currentNumber: '0.' }))
     }
 
@@ -48,7 +48,10 @@ export const StateProvider = ({ children }) => {
         id : `${prev.currentNumber}${id}`,
       product: !state.currentNumber.match(operators) ?
         getProduct([prev.numbers.slice(-1)[0], +`${prev.currentNumber}${id}`], prev.lastOperator) :
-        getProduct([prev.numbers.slice(-1)[0], +id], prev.lastOperator)
+        getProduct([prev.numbers.slice(-1)[0], +id], prev.lastOperator),
+      numbers: prev.numbers.splice(-1, !state.currentNumber.match(/^[0-9][.\d]*(,\d+)?$/)
+        ?
+        +id : +`${prev.currentNumber}${id}`)
     }))
   }
 
@@ -57,7 +60,8 @@ export const StateProvider = ({ children }) => {
     currentNumber: '0',
     input: '',
     lastOperator: '+',
-    product: 0
+    product: 0,
+    numbers: [0]
   }))
 
   const addOperator = (type, label) => {
@@ -72,8 +76,7 @@ export const StateProvider = ({ children }) => {
         input: prev.input.slice(0, -1) + label,
         product: !prev.currentNumber.match(operators) ?
           getProduct([prev.product, +prev.currentNumber], prev.lastOperator) : +prev.product,
-        lastOperator: label,
-        numbers: [...prev.numbers, +prev.currentNumber]
+        lastOperator: label
       }))
     }
     else {
@@ -86,13 +89,13 @@ export const StateProvider = ({ children }) => {
           ?
           getProduct([prev.numbers.slice(-1)[0], +prev.currentNumber], prev.lastOperator) : prev.product,
         lastOperator: label,
-        numbers: [...prev.numbers, +prev.currentNumber]
+        numbers: [prev.product]
       }))
     }
   }
 
   const displayProduct = () => {
-    state.numbers.length === 1 ?
+    state.input === '' ?
       setState(prev => ({
         ...prev,
         currentNumber: getProduct([prev.product, prev.product], prev.lastOperator).toString(),
@@ -108,6 +111,7 @@ export const StateProvider = ({ children }) => {
         numbers: [prev.product]
       }))
   }
+  console.log('state:', state)
 
   return (
     <StateContext.Provider value={state}>
