@@ -6,7 +6,8 @@ React & Tailwind built calculator.
 
 Live demo [here](https://atolentino-calculator.netlify.app/).
 
-[Demo of calculator]()
+[Demo of calculator](https://user-images.githubusercontent.com/96437758/181090410-e864608f-3d7d-4060-bfc2-26987e5f044e.mov)
+
 
 ## Available Scripts
 
