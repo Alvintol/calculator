@@ -1,6 +1,12 @@
 # Calculator
 
-React & Tailwind built calculator
+React & Tailwind built calculator.
+
+- Numpad also Keys trigger designated buttons. 
+
+Live demo [here](https://atolentino-calculator.netlify.app/).
+
+[Demo of calculator]()
 
 ## Available Scripts
 
@@ -8,7 +14,6 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Live demo (here)[].
 
 ## Dependencies 
 
